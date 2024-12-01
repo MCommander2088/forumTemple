@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* 导航栏样式 */
+.navbar {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: #0077cc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar button {
+    background-color: #ffffff;
+    color: #0077cc;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navbar button:hover {
+    background-color: #e0e0e0;
+}
+
+/* \"最受欢迎的帖子\"栏样式 */
+.popular-section {
+    margin: 20px;
+    text-align: center;
+}
+
+.popular-section h2 {
+    color: #333333;
+}
+
+.popular-posts {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.post {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post.large {
+    width: 300px;
+    height: 200px;
+}
+
+.post.medium {
+    width: 250px;
+    height: 150px;
+}
+
+.post.small {
+    width: 230px;
+    height: 125px;
+}
+
+/* 所有帖子列表样式 */
+.post-list {
+    margin: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.post-list th, .post-list td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.post-list th {
+    background-color: #f4f4f9;
+    color: #333333;
+}
+
+.post-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: calc(100% - 200px); /* 100% 宽度减去左右的 300px * 2 */
+    margin: 0 auto; /* 自动左右边距，使其居中 */
+    border-radius: 20px;
+    background-color: #fdfdfd; /* 背景颜色，可根据需要修改 */
+    padding: 20px; /* 内边距，可根据需要修改 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 添加阴影，可选 */
+}
+
+table {
+    width: 100%; /* 表格宽度为容器宽度 */
+    border-collapse: separate; /* 使用分离边框模式以支持圆角 */
+    border-spacing: 0; /* 去掉单元格间隙 */
+    margin: 20px 0; /* 上下外边距 */
+    font-size: 16px; /* 设置字体大小 */
+    text-align: left; /* 文本左对齐 */
+    border: 1px solid #ddd; /* 外边框 */
+    border-radius: 10px; /* 表格圆角 */
+    overflow: hidden; /* 圆角裁剪 */
+}
+
+th, td {
+    padding: 10px 15px; /* 单元格内边距 */
+    border-bottom: 1px solid #ddd; /* 底部边框 */
+}
+
+th {
+    background-color: #f4f4f4; /* 表头背景色 */
+    font-weight: bold; /* 表头加粗 */
+}
+
+tr:last-child td {
+    border-bottom: none; /* 最后一行的单元格不需要底部边框 */
+}
+
+tr:hover td {
+    background-color: #f1f1f1; /* 鼠标悬停时的背景色 */
+}
+
+td:first-child, th:first-child {
+    border-top-left-radius: 10px; /* 左上圆角 */
+}
+
+td:last-child, th:last-child {
+    border-top-right-radius: 10px; /* 右上圆角 */
+}

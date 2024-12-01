@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>论坛模板</title>
+</head>
+<body>
+<!-- 导航栏 -->
+<div class="navbar">
+    <button>主页</button>
+    <button>论坛</button>
+    <button>关于我们</button>
+    <button>联系</button>
+</div>
+
+<br><br>
+
+<!-- "最受欢迎的帖子"栏 -->
+<div class="container">
+    <div class="popular-section">
+        <h1 class="row__title">最受欢迎的铺面</h1>
+        <div class="popular-posts">
+            <a href="{{ TOP2.href }}" style="text-decoration: none;color: inherit;">
+                <div class="post medium">
+                    <h2>{{ TOP2.title }}</h2>
+                    <p>{{ TOP2.author }}</p>
+                    <p>{{ TOP2.pub_date }}</p>
+                </div>
+            </a>
+            <a href="{{ TOP1.href }}" style="text-decoration: none;color: inherit;">
+                <div class="post large">
+                    <h1>{{ TOP1.title }}</h1>
+                    <p>{{ TOP1.author }}</p>
+                    <p>{{ TOP1.pub_date }}</p>
+                </div>
+            </a>
+            <a href="{{ TOP3.href }}" style="text-decoration: none;color: inherit;">
+                <div class="post small">
+                    <h3>{{ TOP3.title }}</h3>
+                    <p>{{ TOP3.author }}</p>
+                    <p>{{ TOP3.pub_date }}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+<!-- 所有帖子列表 -->
+<div class="container">
+    <div class="row row--top-40">
+        <div class="col-md-12">
+            <h2 class="row__subtitle">铺面列表</h2>
+        </div>
+    </div>
+    <div class="row row--top-20">
+        <div class="col-md-12">
+            <div class="table-container">
+                <table class="table">
+                    <thead class="table__thead">
+                    <tr>
+                        <!--<th class="table__th"><input id="selectAll" type="checkbox" class="table__select-row"></th>-->
+                        <th class="table__th"></th>
+                        <th class="table__th">歌曲</th>
+                        <th class="table__th">发表日期</th>
+                        <th class="table__th">铺面状态</th>
+                        <th class="table__th">铺面作者</th>
+                        <th class="table__th">铺面下载</th>
+                        <th class="table__th">铺面视频</th>
+                        <th class="table__th"></th>
+                    </tr>
+                    </thead>
+                    <tbody class="table__tbody">
+                    {% for post in posts %}
+                        {% if post.status %}
+                            <tr class="table-row">
+                                <td class="table-row__td">
+                                    <div class="table-row--active"></div>
+                                </td>
+                                {% else %}
+                            <tr class="table-row table-row--red">
+                            <td class="table-row__td">
+                                <div class="table-row--overdue"></div>
+                            </td>
+                        {% endif %}
+                    <!--<td class="table-row__td">
+                      <input id="" type="checkbox" class="table__select-row">
+                    </td>-->
+                    <td class="table-row__td">
+                        <div class="table-row__info">
+                            <p class="table-row__name">{{ post.song_name }}</p>
+                            <span class="table-row__small">{{ post.song_author }}</span>
+                        </div>
+                    </td>
+                    <td data-column="Policy" class="table-row__td">
+                        <div class="">
+                            <p class="table-row__policy"></p>
+                            <span class="table-row__small">{{ post.pub_date }}</span>
+                        </div>
+                    </td>
+                    {% if post.status %}
+                        <td data-column="Policy status" class="table-row__td">
+                            <p class="table-row__p-status status--green status">正常</p>
+                        </td>
+                    {% else %}
+                        <td data-column="Policy status" class="table-row__td">
+                            <p class="table-row__p-status status--red status">被封禁</p>
+                        </td>
+                    {% endif %}
+                    <td data-column="Destination" class="table-row__td">
+                        {{ post.level_author }}
+                    </td>
+                    {% if post.dl_link %}
+                        {% if post.status %}
+                            <td data-column="Status" class="table-row__td">
+                                <a href="{{ post.dl_link }}">
+                                    <p class="table-row__status status--green status">点击下载</p>
+                                </a>
+                            </td>
+                        {% else %}
+                            <td data-column="Status" class="table-row__td">
+                                <p class="table-row__status status--red status">禁止下载</p>
+                            </td>
+                        {% endif %}
+                    {% else %}
+                        <td data-column="Status" class="table-row__td">
+                            <p class="table-row__status status--grey status">暂无下载</p>
+                        </td>
+                    {% endif %}
+
+                    {% if post.vd_link %}
+                        <td data-column="Progress" class="table-row__td">
+                            <a href="{{ post.vd_link }}">
+                                <p class="table-row__progress status--blue status">点击观看</p>
+                            </a>
+                        </td>
+                    {% else %}
+                        <td data-column="Progress" class="table-row__td">
+                            <p class="table-row__progress status--grey status">暂无视频</p>
+                        </td>
+                    {% endif %}
+
+
+
+                    {% if post.status %}
+                        <td class="table-row__td"><a href="./info/{{ post.id }}">
+                            <p class="table-row__progress status--blue status">详情</p></a>
+                        </td>
+                    {% else %}
+                        <td class="table-row__td">
+                            <p class="table-row__progress status--grey status">详情</p></a>
+                        </td>
+                    {% endif %}
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
